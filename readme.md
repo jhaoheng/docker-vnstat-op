@@ -18,16 +18,18 @@
 # 使用
 > 環境 ubuntu 16.04
 
-1. vnStat    : 監控網絡流量或帶寬使用率。
+1. vnStat 
+    - 監控網絡流量或帶寬使用率。
     - 安裝 vnstat  : `sudo apt-get install -y vnstat`
-2. vnStati   : 用於生成網絡流量的圖形。 它從 vnStat 創建圖形並將其存儲在指定位置。
+2. vnStati 
+    - 使用 cmd 生成網絡流量的圖形檔案。 它從 vnStat 創建圖形並將其存儲在指定位置。
     - 安裝 vnstati : `sudo apt-get install -y vnstati`
 3. 如何使用 : https://www.howtoforge.com/tutorial/vnstat-network-monitoring-ubuntu/
     - `sudo service vnstat start` : 啟動
     - `sudo service vnstat stop` : 關閉
     - `ps aux | grep vnstat` : 確認服務在線
-4. 開啟 web dashboard, `docker-compose up -d`
-    - browser : `http://{ip}/vnstat/`
+4. 開啟 web dashboard, `docker-compose up -d`. Browser : `http://{ip}/vnstat/`
+    - 預先 docker-compsoe.yml 確認 `/var/lib/vnstat` 與 `/usr/bin/vnstat` 位置正確
 
 ## vnstat 操作
 
@@ -53,10 +55,3 @@
     - Output of summary for an interface    : `vnstati -s -i eth0 -o summary.png`
     - Hourly display of stats               : `vnstati -h -o summary2.png`
     - Cumulative output                     : `vnstati -s -i wlan0+eth0 -o summary3.png`
-
-
-# vnstat-dashboard
-
-1. 確認位置
-    - `/var/lib/vnstat`
-    - `/usr/bin/vnstat`
