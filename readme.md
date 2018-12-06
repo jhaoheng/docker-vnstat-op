@@ -26,6 +26,8 @@
     - `sudo service vnstat start` : 啟動
     - `sudo service vnstat stop` : 關閉
     - `ps aux | grep vnstat` : 確認服務在線
+4. 開啟 web dashboard, `docker-compose up -d`
+    - browser : `http://{ip}/vnstat/`
 
 ## vnstat 操作
 

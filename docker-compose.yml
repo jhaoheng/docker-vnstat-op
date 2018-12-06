@@ -9,15 +9,11 @@ services:
           - /usr/bin/vnstat:/usr/bin/vnstat
           - /etc/localtime:/etc/localtime:ro
           - /var/run/docker.sock:/var/run/docker.sock
-          - ./app:/var/www/html/vnstat/
+          - ./dashboard:/var/www/html/vnstat/
 
-  # Because `vnstat-dashboard` need to get 
-  vnstat:
-    image: vnstat:latest
-    volumes:
-      - :/var/lib/vnstat
-      - ./data:/var/lib/vnstat
-      - ./output:/root/output
-    network_mode: host
-    working_dir: /root/output
-    restart: always
+  # vnstat:
+  #   image: vimagick/vnstat:latest
+  #   volumes:
+  #     - ./data:/var/lib/vnstat
+  #   network_mode: host
+  #   restart: always
