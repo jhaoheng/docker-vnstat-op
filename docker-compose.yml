@@ -1,7 +1,7 @@
 version: '3'
 services:
   vnstat-dashboard:
-    build: .
+    image: php:7.0-apache
     network_mode: "host"
     container_name: vnstat-dashboard
     volumes:
