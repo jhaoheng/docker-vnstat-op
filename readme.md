@@ -18,21 +18,22 @@
 # 說明
 > 環境 ubuntu 16.04 , 14.04 均適用
 
-1. 關於 vnStat (監控網絡流量或帶寬使用率)
-    - 指定版本為 1.14.
+- [x] : 關於 vnStat (監控網絡流量或帶寬使用率)
+    - 需指定版本為 1.14
     - 如何使用 : https://www.howtoforge.com/tutorial/vnstat-network-monitoring-ubuntu/
-2. 關於 vnStati (依據 vnstat 創建圖形輸出並將其存儲在指定位置.) `未使用`
-3. 關於 dashboard
-    - `vnstat-dashboard` 資料夾
-    - 透過 http://{ip}/vnstat 觀看目前流量統計
-    - 解析指定版本 vnstat-1.14
+- [ ] : 關於 vnStati (依據 vnstat 創建圖形輸出並將其存儲在指定位置.) `未使用`
+- [x] : 關於 dashboard (版本相依 vnstat=1.14)
 
-# 安裝
-1. `ln -s .....{path}/vnstat-1.14 /usr/bin/vnstat`
+# 安裝 vnstat 與設定 dashboard
+1. `apt-get install vnstat=1.14`, 若找無版本, 使用以下策略
+    - 移除目前版本 `rm /usr/bin/vnstat`
+    - 複製 v1.14 `cp vnstat-1.14 /usr/bin/vnstat`
 2. `vnstat --version`, 確認版本 1.14
 3. `service vnstat start`
-4. 開啟 web dashboard, `docker-compose up -d`. Browser : `http://{ip}/vnstat/`
-    - 預先 docker-compsoe.yml 確認 `/var/lib/vnstat` 與 `/usr/bin/vnstat` 位置正確
+4. 設定 dashboard, `docker-compose up -d`. Browser : `http://{ip}/vnstat/`
+    - 需確認 `/var/lib/vnstat` 與 `/usr/bin/vnstat` 位置正確
+    - 透過 http://{ip}/vnstat 觀看目前流量統計
+    - ![dashboard](./assets/dashboard.png)
 
 ## vnstat 指令基本操作(若使用 dashboard 則無須使用)
 
