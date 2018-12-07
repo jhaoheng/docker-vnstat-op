@@ -15,23 +15,26 @@
 - 為 vnStat.cgi 的內容定位和圖像背景提供了可以定制的選項
 - 接口帶寬會自動被檢測出來
 
-# 使用
-> 環境 ubuntu 16.04
+# 說明
+> 環境 ubuntu 16.04 , 14.04 均適用
 
-1. vnStat 
-    - 監控網絡流量或帶寬使用率。
-    - 安裝 vnstat  : `sudo apt-get install -y vnstat`
-2. vnStati 
-    - 使用 cmd 生成網絡流量的圖形檔案。 它從 vnStat 創建圖形並將其存儲在指定位置。
-    - 安裝 vnstati : `sudo apt-get install -y vnstati`
-3. 如何使用 : https://www.howtoforge.com/tutorial/vnstat-network-monitoring-ubuntu/
-    - `sudo service vnstat start` : 啟動
-    - `sudo service vnstat stop` : 關閉
-    - `ps aux | grep vnstat` : 確認服務在線
+1. 關於 vnStat (監控網絡流量或帶寬使用率)
+    - 指定版本為 1.14.
+    - 如何使用 : https://www.howtoforge.com/tutorial/vnstat-network-monitoring-ubuntu/
+2. 關於 vnStati (依據 vnstat 創建圖形輸出並將其存儲在指定位置.) `未使用`
+3. 關於 dashboard
+    - `vnstat-dashboard` 資料夾
+    - 透過 http://{ip}/vnstat 觀看目前流量統計
+    - 解析指定版本 vnstat-1.14
+
+# 安裝
+1. `ln -s .....{path}/vnstat-1.14 /usr/bin/vnstat`
+2. `vnstat --version`, 確認版本 1.14
+3. `service vnstat start`
 4. 開啟 web dashboard, `docker-compose up -d`. Browser : `http://{ip}/vnstat/`
     - 預先 docker-compsoe.yml 確認 `/var/lib/vnstat` 與 `/usr/bin/vnstat` 位置正確
 
-## vnstat 操作
+## vnstat 指令基本操作(若使用 dashboard 則無須使用)
 
 1. 預設設定檔 : `/etc/vnstat.conf`
 2. `vnstat --longhelp`
@@ -47,11 +50,3 @@
     - 1 = bar column visible
     - 2 = same as 1 except rate in summary and weekly
     - 3 = rate column visible `(default)`
-
-## vnStati 操作
-
-1. `vnstati --help`
-2. 輸出 : 每次輸出都要帶 `-o`
-    - Output of summary for an interface    : `vnstati -s -i eth0 -o summary.png`
-    - Hourly display of stats               : `vnstati -h -o summary2.png`
-    - Cumulative output                     : `vnstati -s -i wlan0+eth0 -o summary3.png`
